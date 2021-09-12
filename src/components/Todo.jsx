@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +20,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: "blue",
+    color: "#1a237e",
     fontWeight:"bold",
-    fontSize:26
+    fontSize:26,
+    fontFamily:"Verdana,sans-serif"
   },
 
   
@@ -49,6 +51,7 @@ export default function Todo() {
   const classes = useStyles();
   const [inputData,setInputData]=useState('');
   const [items,setItems]=useState([]);
+  
 
   const AddItems=()=>{
     if(!inputData){
@@ -64,18 +67,22 @@ const updateditems=items.filter((element,index)=>{
 })
 setItems(updateditems)
   }
+
+  const removeAll=()=>{
+    setItems([])
+  }
   return (
-    <div>
+    <div style={{display:"block",marginTop:80}}>
       <Grid container spacing={5} className={classes.root}>
         <Grid item xs={12} className={classes.paper}>
-        Add your Todo here 
+      Todo App 
         </Grid>
         <Grid  item xs={12} className={classes.paper}>
         <Paper component="form" className={classes.roots}>
       
       <InputBase
         className={classes.input}
-        placeholder="Add your Todo"
+        placeholder="Add your Todo here"
        type="text"
        value={inputData} onChange={(e) => setInputData(e.target.value)}
       />
@@ -89,8 +96,12 @@ setItems(updateditems)
          {items.map((element,index) =>{
            return(
             <Grid xs={12} className={classes.paper} >
-            <Paper component="form" className={classes.roots} style={{backgroundColor:"#ffe0b2"}}>
-          
+            <Paper component="form" className={classes.roots} style={{backgroundColor:"#e8eaf6"}}>
+            <Checkbox
+        
+        color="primary"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
             <Typography style={{width:500}} key={index}>{element}</Typography>
           
           <Divider className={classes.divider} orientation="vertical" />
@@ -103,7 +114,7 @@ setItems(updateditems)
          })}
 
        
-        <Grid>
+        <Grid item  onClick={removeAll}>
         <Button variant="contained" color="primary">
  Remove All
 </Button>

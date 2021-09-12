@@ -51,12 +51,13 @@ export default function Todo() {
   const classes = useStyles();
   const [inputData,setInputData]=useState('');
   const [items,setItems]=useState([]);
-  var butname=''
-
+  
+ 
+  
   const AddItems=()=>{
-    if(!inputData ){
+    if(!inputData){
 
-    }
+    } 
     
     else{
     setItems([...items,inputData])

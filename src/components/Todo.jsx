@@ -5,8 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
 import DirectionsIcon from '@material-ui/icons/Directions';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,11 +42,11 @@ export default function Todo() {
   const classes = useStyles();
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid container spacing={3}  style={{display:"block",marginLeft:"auto",marginRight:"auto"}}>
         <Grid item xs={12} className={classes.paper}>
         Add your Todo here 
         </Grid>
-        <Grid xs={12}  className={classes.paper}>
+        <Grid xs={12} style={{alignItems:"center"}} >
         <Paper component="form" className={classes.roots}>
       
       <InputBase
@@ -58,7 +57,7 @@ export default function Todo() {
       
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton color="primary" className={classes.iconButton} aria-label="directions">
-        <DirectionsIcon />
+        <AddIcon  />
       </IconButton>
     </Paper>
         </Grid>

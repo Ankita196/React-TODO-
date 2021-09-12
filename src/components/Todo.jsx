@@ -58,6 +58,12 @@ export default function Todo() {
     setInputData('')
   }
   }
+  const deleteItem =(id) =>{
+const updateditems=items.filter((element,index)=>{
+  return index != id
+})
+setItems(updateditems)
+  }
   return (
     <div>
       <Grid container spacing={5} className={classes.root}>
@@ -80,17 +86,23 @@ export default function Todo() {
       </IconButton>
     </Paper>
         </Grid>
-        <Grid xs={12} className={classes.paper} >
-        <Paper component="form" className={classes.roots} style={{backgroundColor:"#ffe0b2"}}>
-      
-        <Typography style={{width:500}}>apple</Typography>
-      
-      <Divider className={classes.divider} orientation="vertical" />
-      <IconButton color="primary" className={classes.iconButton} style={{margineRight:20}} >
-        <DeleteIcon  />
-      </IconButton>
-    </Paper>
-        </Grid>
+         {items.map((element,index) =>{
+           return(
+            <Grid xs={12} className={classes.paper} >
+            <Paper component="form" className={classes.roots} style={{backgroundColor:"#ffe0b2"}}>
+          
+            <Typography style={{width:500}} key={index}>{element}</Typography>
+          
+          <Divider className={classes.divider} orientation="vertical" />
+          <IconButton color="primary" className={classes.iconButton} style={{margineRight:20}} >
+            <DeleteIcon onClick={()=>deleteItem(index)} />
+          </IconButton>
+        </Paper>
+            </Grid>
+           )
+         })}
+
+       
         <Grid>
         <Button variant="contained" color="primary">
  Remove All

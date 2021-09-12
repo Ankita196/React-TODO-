@@ -54,9 +54,11 @@ export default function Todo() {
   
 
   const AddItems=()=>{
-    if(!inputData){
+    if(!inputData ){
 
-    }else{
+    }
+    
+    else{
     setItems([...items,inputData])
     setInputData('')
   }

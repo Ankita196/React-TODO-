@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 400,
+    width: 300,
     
   },
   input: {
@@ -46,24 +47,36 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Todo() {
   const classes = useStyles();
+  const [inputData,setInputData]=useState('');
+  const [items,setItems]=useState([]);
+
+  const AddItems=()=>{
+    if(!inputData){
+
+    }else{
+    setItems([...items,inputData])
+    setInputData('')
+  }
+  }
   return (
     <div>
       <Grid container spacing={5} className={classes.root}>
         <Grid item xs={12} className={classes.paper}>
         Add your Todo here 
         </Grid>
-        <Grid xs={12} className={classes.paper}>
+        <Grid  item xs={12} className={classes.paper}>
         <Paper component="form" className={classes.roots}>
       
       <InputBase
         className={classes.input}
         placeholder="Add your Todo"
        type="text"
+       value={inputData} onChange={(e) => setInputData(e.target.value)}
       />
       
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton color="primary" className={classes.iconButton} aria-label="AddIcon">
-        <AddIcon  />
+        <AddIcon  onClick={AddItems}/>
       </IconButton>
     </Paper>
         </Grid>
@@ -77,6 +90,11 @@ export default function Todo() {
         <DeleteIcon  />
       </IconButton>
     </Paper>
+        </Grid>
+        <Grid>
+        <Button variant="contained" color="primary">
+ Remove All
+</Button>
         </Grid>
         
         </Grid>

@@ -51,7 +51,7 @@ export default function Todo() {
   const classes = useStyles();
   const [inputData,setInputData]=useState('');
   const [items,setItems]=useState([]);
-  
+  var butname=''
 
   const AddItems=()=>{
     if(!inputData ){
@@ -63,6 +63,8 @@ export default function Todo() {
     setInputData('')
   }
   }
+    
+     
   const deleteItem =(id) =>{
 const updateditems=items.filter((element,index)=>{
   return index != id
@@ -72,6 +74,11 @@ setItems(updateditems)
 
   const removeAll=()=>{
     setItems([])
+    if(items.length==0){
+    return alert("No Todo present to delete")
+    } else{
+      return alert('if want to delete all to do then press ok')
+    }
   }
   return (
     <div style={{display:"block",marginTop:80}}>
@@ -121,7 +128,7 @@ setItems(updateditems)
  Remove All
 </Button>
         </Grid>
-        
+      
         </Grid>
 
     </div>
